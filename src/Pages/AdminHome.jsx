@@ -6,6 +6,7 @@ const socket = socketIOClient("http://localhost:4000");
 
 export default function AdminHome() {
   const [notifications, setNotifications] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     socket.on("adminNotification", (notification) => {
@@ -14,8 +15,7 @@ export default function AdminHome() {
         notification,
       ]);
     });
-  }, []);
-  const navigate = useNavigate();
+  }, [navigate]);
 
   const logoutAdmin = () => {
     sessionStorage.removeItem("adminToken");
